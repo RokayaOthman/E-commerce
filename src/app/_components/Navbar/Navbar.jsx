@@ -11,6 +11,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useContext } from "react";
 import { CartContext } from "@/context/Cartcontextx";
 import SearchBar from "@/app/_components/Search/Search";
+
 export default function Navbar() {
   const { numberOfCartItems } = useContext(CartContext);
   const { data: session } = useSession();
@@ -20,13 +21,9 @@ export default function Navbar() {
   }
 
   return (
-    <Nav
-      fluid
-      rounded
-      className="border-b border-gray-200 bg-white px-4 py-3 shadow-sm"
-    >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4">
-        <NavbarBrand as={Link} href="/" className="flex items-center gap-2">
+    <Nav fluid className="border-b border-gray-200 bg-white px-4 py-3 shadow-sm">
+     <div className="flex w-full items-center justify-between gap-6 px-6">
+        <NavbarBrand as={Link} href="/" className="shrink-0">
           <div className="flex items-center gap-2">
             <i
               className="fa-solid fa-cart-shopping text-2xl"
@@ -38,11 +35,11 @@ export default function Navbar() {
           </div>
         </NavbarBrand>
 
-        <div className="hidden flex-1 px-4 lg:block">
+        <div className="hidden min-w-0 flex-grow px-4 lg:block">
           <SearchBar />
         </div>
 
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden shrink-0 items-center gap-6 lg:flex">
           <ul className="flex items-center gap-6 text-[15px] font-medium text-gray-700">
             <li className="transition hover:text-green-500">
               <Link href="/">Home</Link>
@@ -104,7 +101,7 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="ml-auto flex items-center gap-3 lg:hidden">
           <Link href="/cart" className="relative text-xl text-gray-700">
             <i className="fa-solid fa-cart-shopping" />
             {numberOfCartItems > 0 && (

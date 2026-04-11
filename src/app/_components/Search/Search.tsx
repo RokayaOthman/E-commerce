@@ -38,7 +38,7 @@ export default function SearchBar() {
   }, [query, allProducts]);
 
   return (
-    <div className="w-[50%] mx-auto my-10 relative text-green-500">
+    <div className="relative w-full my-10 relative text-green-500">
           <Input
              
         placeholder="Search for products..."

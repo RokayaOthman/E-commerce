@@ -10,8 +10,6 @@ export default async function Home() {
   
   return (
     <>
-      <SearchBar/>
-   
         <MainSlider />
     
       <CategorySlider />
