@@ -41,12 +41,12 @@ export default function Navbar() {
           </div>
         </NavbarBrand>
 
-        <div className="hidden min-w-0 w-72 px-4 lg:block">
+        <div className="flex-1 px-4 lg:block">
           <SearchBar />
         </div>
 
-        <div className="hidden shrink-0 items-center gap-6 lg:flex">
-          <ul className="flex items-center gap-6 text-[15px] font-medium text-gray-700">
+        <div className="hidden shrink-0 items-center text-xl gap-9 lg:flex">
+          <ul className="flex items-center gap-9 font-normal text-gray-700">
             <li className="transition hover:text-green-500">
               <Link href="/">Home</Link>
             </li>
@@ -121,7 +121,7 @@ export default function Navbar() {
       </div>
 
       <NavbarCollapse>
-        <div className="mt-4 space-y-4 border-t border-gray-200 pt-4 lg:hidden">
+        <div className="mt-4 space-y-4 border-t flex-grow border-gray-200 pt-4 lg:hidden">
           <SearchBar />
 
           <ul className="flex flex-col gap-3 text-sm font-medium text-gray-700">
