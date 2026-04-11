@@ -1,5 +1,6 @@
 "use client";
-
+import logo from "@/Utilities/logo.svg";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Navbar as Nav,
@@ -21,16 +22,21 @@ export default function Navbar() {
   }
 
   return (
-    <Nav fluid className="border-b border-gray-200 bg-white px-4 py-3 shadow-sm">
-     <div className="flex w-full items-center justify-between gap-6 px-6">
+    <Nav
+      fluid
+      className="border-b border-gray-200 bg-white px-4 py-3 shadow-sm"
+    >
+      <div className="flex w-full items-center justify-between gap-6 px-6">
         <NavbarBrand as={Link} href="/" className="shrink-0">
           <div className="flex items-center gap-2">
-            <i
-              className="fa-solid fa-cart-shopping text-2xl"
-              style={{ color: "#22c55e" }}
-            />
             <span className="text-2xl font-extrabold text-gray-900">
-              FreshCart
+              <Image
+                src={logo}
+                alt="FreshCart"
+                width={160}
+                height={31}
+                className="h-6 lg:h-8 w-auto"
+              />{" "}
             </span>
           </div>
         </NavbarBrand>
