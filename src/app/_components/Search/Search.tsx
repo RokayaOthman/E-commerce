@@ -71,8 +71,27 @@ export default function SearchBar() {
         onFocus={() => {
           if (query.trim() !== "") setIsOpen(true);
         }}
-        className="h-14 w-full rounded-full focus:outline-none focus:ring-0"
+        className="h-14 w-full rounded-full pr-12 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
       />
+
+      <button
+        type="button"
+        className="absolute right-1.5 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-green-500 text-white transition-colors hover:bg-green-600 pointer-events-none"
+      >
+        <svg
+          data-prefix="fas"
+          data-icon="magnifying-glass"
+          className="text-sm h-3 w-3"
+          role="img"
+          viewBox="0 0 512 512"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.1 253.9 416 208 416 93.1 416 0 322.9 0 208S93.1 0 208 0 416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 0 0 0 288z"
+          />
+        </svg>
+      </button>
 
       {isOpen && query.trim() !== "" && (
         <ul className="absolute top-full left-0 right-0 z-50 mt-2 max-h-60 overflow-y-auto rounded-md border bg-white shadow-md">
