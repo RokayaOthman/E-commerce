@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <Nav
       fluid
-      className="border-b border-gray-200 bg-white px-4 py-3 shadow-sm"
+      className="border-b border-gray-200 bg-white px-4 py-0 shadow-sm [&>div]:py-0 h-25"
     >
       <div className="flex w-full items-center justify-between gap-6 px-6">
         <NavbarBrand as={Link} href="/" className="shrink-0">
@@ -35,13 +35,13 @@ export default function Navbar() {
                 alt="FreshCart"
                 width={160}
                 height={31}
-                className="h-6 lg:h-8 w-auto"
+                className="h-6 lg:h-7 w-auto"
               />{" "}
             </span>
           </div>
         </NavbarBrand>
 
-        <div className="hidden min-w-0 flex-grow px-4 lg:block">
+        <div className="hidden min-w-0 w-72 px-4 lg:block">
           <SearchBar />
         </div>
 
@@ -62,7 +62,7 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-2 text-gray-700">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-600">
+            <div className="flex w-10 items-center justify-center rounded-full bg-green-100 text-green-600">
               <i className="fa-solid fa-headset text-lg" />
             </div>
             <div className="leading-tight">

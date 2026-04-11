@@ -38,7 +38,7 @@ export default function SearchBar() {
   }, [query, allProducts]);
 
   return (
-    <div className="border border-gray relative w-full my-10 relative text-green-500 rounded-full overflow-hidden ">
+    <div className="border border-gray relative w-full my-4 relative text-green-500 rounded-full overflow-hidden ">
        <div className="overflow-hidden rounded-full">
     {/* content here */}
       <Input

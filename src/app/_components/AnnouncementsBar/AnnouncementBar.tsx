@@ -3,8 +3,8 @@ import { FaTruck, FaGift, FaPhoneAlt, FaEnvelope, FaUser, FaUserPlus } from "rea
 
 export default function AnnouncementBar() {
   return (
-    <div className="w-full bg-[#f5f5f5] text-gray-600 text-xl border-b">
-      <div className="flex justify-between items-center px-6 py-2">
+    <div className="w-full bg-[#ffffff] text-gray-600 text-l border-b py-3">
+      <div className="flex justify-between items-center px-6">
 
         {/* LEFT SIDE */}
         <div className="flex items-center gap-6">
