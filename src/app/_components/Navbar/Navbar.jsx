@@ -5,134 +5,161 @@ import {
   Navbar as Nav,
   NavbarBrand,
   NavbarCollapse,
-  NavbarLink,
   NavbarToggle,
 } from "flowbite-react";
 import { signOut, useSession } from "next-auth/react";
 import { useContext } from "react";
 import { CartContext } from "@/context/Cartcontextx";
-
+import SearchBar from "@/app/_components/Search/Search";
 export default function Navbar() {
-  const {numberOfCartItems} = useContext(CartContext);
-  const { data: session, status } = useSession();
+  const { numberOfCartItems } = useContext(CartContext);
+  const { data: session } = useSession();
 
   function logout() {
-    signOut({callbackUrl:"/login"})
-   }
-
+    signOut({ callbackUrl: "/login" });
+  }
 
   return (
-    <Nav className="p-4 shadow-md shadow-gray-300 ">
-      <NavbarBrand as={Link} href="/" className="flex items-center gap-2 ">
-        <div className="flex items-center gap-2">
-          <i
-            className="fa-solid fa-cart-shopping"
-            style={{ color: "#4aa58a" }}
-          />
-          <span className="lg:text-xl font-semibold">FreshCart</span>
+    <Nav
+      fluid
+      rounded
+      className="border-b border-gray-200 bg-white px-4 py-3 shadow-sm"
+    >
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4">
+        <NavbarBrand as={Link} href="/" className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            <i
+              className="fa-solid fa-cart-shopping text-2xl"
+              style={{ color: "#22c55e" }}
+            />
+            <span className="text-2xl font-extrabold text-gray-900">
+              FreshCart
+            </span>
+          </div>
+        </NavbarBrand>
+
+        <div className="hidden flex-1 px-4 lg:block">
+          <SearchBar />
         </div>
-        <ul className="flex flex-row gap-3 text-sm ">
-          <li className="hover:text-green-500">
-            <Link href="/">Home</Link>
-          </li>
-          {session && (
-            <li className="hover:text-green-500">
-              <Link href="/cart" className="relative">
-                Cart{" "}
-                {numberOfCartItems > 0 && (
-                  <span className="absolute top-[-10px] end-[-10px] bg-green-500 rounded-full  text-white flex size-5 justify-center items-center">
-                    {numberOfCartItems}
-                  </span>
-                )}
-              </Link>
-            </li>
-          )}
-          {session && (
-            <li className="hover:text-green-500">
-              <Link href="/WishList">WishList</Link>
-            </li>
-          )}
 
-          <li className="hover:text-green-500">
-            <Link href="/products">Products</Link>
-          </li>
-          <li className="hover:text-green-500">
-            <Link href="/category">Category</Link>
-          </li>
-          <li className="hover:text-green-500">
-            <Link href="/brands">Brands</Link>
-          </li>
-        </ul>
-      </NavbarBrand>
+        <div className="hidden items-center gap-6 lg:flex">
+          <ul className="flex items-center gap-6 text-[15px] font-medium text-gray-700">
+            <li className="transition hover:text-green-500">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="transition hover:text-green-500">
+              <Link href="/shop">Shop</Link>
+            </li>
+            <li className="transition hover:text-green-500">
+              <Link href="/categories">Categories</Link>
+            </li>
+            <li className="transition hover:text-green-500">
+              <Link href="/brands">Brands</Link>
+            </li>
+          </ul>
 
-      <NavbarToggle />
+          <div className="flex items-center gap-2 text-gray-700">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-600">
+              <i className="fa-solid fa-headset text-lg" />
+            </div>
+            <div className="leading-tight">
+              <p className="text-xs text-gray-500">Support</p>
+              <p className="text-sm font-semibold text-gray-800">24/7 Help</p>
+            </div>
+          </div>
+
+          <Link
+            href="/wishlist"
+            className="text-2xl text-gray-700 transition hover:text-green-500"
+          >
+            <i className="fa-regular fa-heart" />
+          </Link>
+
+          <Link
+            href="/cart"
+            className="relative text-2xl text-gray-700 transition hover:text-green-500"
+          >
+            <i className="fa-solid fa-cart-shopping" />
+            {numberOfCartItems > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[11px] font-semibold text-white">
+                {numberOfCartItems}
+              </span>
+            )}
+          </Link>
+
+          {!session ? (
+            <Link
+              href="/login"
+              className="rounded-full bg-green-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-green-600"
+            >
+              Sign In
+            </Link>
+          ) : (
+            <button
+              onClick={logout}
+              className="rounded-full bg-green-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-green-600"
+            >
+              Sign Out
+            </button>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3 lg:hidden">
+          <Link href="/cart" className="relative text-xl text-gray-700">
+            <i className="fa-solid fa-cart-shopping" />
+            {numberOfCartItems > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-[11px] font-semibold text-white">
+                {numberOfCartItems}
+              </span>
+            )}
+          </Link>
+          <NavbarToggle />
+        </div>
+      </div>
 
       <NavbarCollapse>
-        <ul className="flex flex-row gap-4 mt-4 lg:mt-0">
-          {!session ? (
-            <>
-              {" "}
-              <li className="hover:text-green-500">
-                <Link href="#">
-                  <i className="fab fa-instagram"></i>
-                </Link>
-              </li>
-              <li className="hover:text-green-500">
-                <Link href="#">
-                  <i className="fab fa-facebook"></i>
-                </Link>
-              </li>
-              <li className="hover:text-green-500">
-                <Link href="#">
-                  <i className="fab fa-twitter"></i>
-                </Link>
-              </li>
-              <li className="hover:text-green-500">
-                <Link href="#">
-                  <i className="fab fa-tiktok"></i>
-                </Link>
-              </li>
-              <li className="hover:text-green-500">
-                <Link href="#">
-                  <i className="fab fa-linkedin"></i>
-                </Link>
-              </li>
-              <li className="hover:text-green-500">
-                <Link href="#">
-                  <i className="fab fa-youtube"></i>
-                </Link>
-              </li>
-              <li className="hover:text-green-500">
-                <Link href="/register">Register</Link>
-              </li>
-              <li className="hover:text-green-500">
-                <Link href="/login">Login</Link>
-              </li>
-            </>
-          ) : (
-            <>
-              {" "}
-                <div className="flex items-center gap-2 " >
-                  <li className="hover:text-green-500">
-                <span className="cursor-pointer" onClick={logout}>
-                  Signout
-                </span>
-              </li>
-              {session && (
-                <li className="text-green-500 rounded-2xl bg-slate-100 p-2" >
-                  <Link href="/Profile">
-                    {" "}
-                    Profile
-                    <i
-                      className="fa-solid fa-user"
-                      style={{ color: "#4aa58a" }}
-                    />
-                  </Link>
+        <div className="mt-4 space-y-4 border-t border-gray-200 pt-4 lg:hidden">
+          <SearchBar />
+
+          <ul className="flex flex-col gap-3 text-sm font-medium text-gray-700">
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/shop">Shop</Link>
+            </li>
+            <li>
+              <Link href="/categories">Categories</Link>
+            </li>
+            <li>
+              <Link href="/brands">Brands</Link>
+            </li>
+            <li>
+              <Link href="/wishlist">Wishlist</Link>
+            </li>
+            {!session ? (
+              <>
+                <li>
+                  <Link href="/register">Register</Link>
                 </li>
-              )}</div>
-            </>
-          )}
-        </ul>
+                <li>
+                  <Link href="/login">Login</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link href="/profile">Profile</Link>
+                </li>
+                <li>
+                  <button onClick={logout} className="text-left">
+                    Sign Out
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
       </NavbarCollapse>
     </Nav>
   );

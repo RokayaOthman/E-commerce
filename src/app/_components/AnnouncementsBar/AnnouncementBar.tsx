@@ -1,9 +1,10 @@
+import Link from "next/link";
 import { FaTruck, FaGift, FaPhoneAlt, FaEnvelope, FaUser, FaUserPlus } from "react-icons/fa";
 
 export default function AnnouncementBar() {
   return (
     <div className="w-full bg-[#f5f5f5] text-gray-600 text-xl border-b">
-      <div className=" flex justify-between items-center px-6 py-2">
+      <div className="flex justify-between items-center px-6 py-2">
 
         {/* LEFT SIDE */}
         <div className="flex items-center gap-6">
@@ -31,15 +32,21 @@ export default function AnnouncementBar() {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1 cursor-pointer hover:text-black">
+            <Link
+              href="/signin"
+              className="flex items-center gap-1 hover:text-black transition"
+            >
               <FaUser className="text-xs" />
               <span>Sign In</span>
-            </div>
+            </Link>
 
-            <div className="flex items-center gap-1 cursor-pointer hover:text-black">
+            <Link
+              href="/signup"
+              className="flex items-center gap-1 hover:text-black transition"
+            >
               <FaUserPlus className="text-xs" />
               <span>Sign Up</span>
-            </div>
+            </Link>
           </div>
         </div>
 
