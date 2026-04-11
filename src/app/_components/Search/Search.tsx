@@ -13,7 +13,7 @@ export default function SearchBar() {
     async function fetchProducts() {
       try {
         const res = await fetch(
-          "https://ecommerce.routemisr.com/api/v1/products"
+          "https://ecommerce.routemisr.com/api/v1/products",
         );
         const data = await res.json();
         setAllProducts(data.data || []);
@@ -31,22 +31,22 @@ export default function SearchBar() {
       setResults([]);
     } else {
       const filtered = allProducts.filter((p) =>
-        p.title.toLowerCase().includes(query.toLowerCase())
+        p.title.toLowerCase().includes(query.toLowerCase()),
       );
       setResults(filtered);
     }
   }, [query, allProducts]);
 
   return (
-    <div className="relative w-full my-10 relative text-green-500">
-          <Input
-             
+    <div className="border border-gray relative w-full my-10 relative text-green-500 rounded-full overflow-hidden ">
+       <div className="overflow-hidden rounded-full">
+    {/* content here */}
+      <Input
         placeholder="Search for products..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-      />
+        />
 
-     
       {query.trim() !== "" && (
         <ul className="absolute left-0 right-0 bg-white border rounded mt-1 max-h-60 overflow-y-auto shadow-md z-10">
           {loading ? (
@@ -64,6 +64,7 @@ export default function SearchBar() {
           )}
         </ul>
       )}
+      </div>
     </div>
   );
 }
